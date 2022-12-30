@@ -20,6 +20,7 @@ $(function(){
     $doctor.change(loadHours);
     $date.on('change',loadHours);
 });
+
 function onDoctorsLoaded(doctors){
     let htmlOptions = '';
     doctors.forEach(doctor => {
@@ -28,12 +29,14 @@ function onDoctorsLoaded(doctors){
     $doctor.html(htmlOptions);
     loadHours();
 }
+
 function loadHours(){
     const selectedDate = $date.val();
     const doctorId = $doctor.val();
     const url = `/schedule/hours?date=${selectedDate}&doctor_id=${doctorId}`;
     $.getJSON(url, displayHours);
 }
+
 function displayHours(data){
     let htmlHoursM = '';
     let htmlHoursA = '';

@@ -32,7 +32,12 @@
                     {{__($appointment->scheduled_date)}}
                 </td>
                 <td>
-                    {{__($appointment->status)}}
+                    @if ($appointment->status == 'Done')
+                        <span class="badge badge-success">{{$appointment->status}}</span>
+                    @endif
+                    @if ($appointment->status == 'Cancelled')
+                        <span class="badge badge-danger">{{$appointment->status}}</span>
+                    @endif
                 </td>
                 <td>
                     <form action="{{ url('/appointments/'.$appointment->id) }}" method="get">

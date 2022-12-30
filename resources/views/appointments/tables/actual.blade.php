@@ -36,19 +36,33 @@
                     {{__($appointment->Scheduled_Time_12)}}
                 </td>
                 <td>
-                    {{__($appointment->status)}}
+                    @if ($appointment->status == 'Confirmed')
+                        <span class="badge badge-success">{{$appointment->status}}</span>
+                    @endif
+                    @if ($appointment->status == 'Cancelled')
+                        <span class="badge badge-danger">{{$appointment->status}}</span>
+                    @endif
+                    @if ($appointment->status == 'Reserved')
+                        <span class="badge badge-secondary">{{$appointment->status}}</span>
+                    @endif
                 </td>
                 <td>
-                    @if ($role == 'doctor')
+                    @if ($role == 'admin')
+                    <form action="{{ url('/appointments/'.$appointment->id) }}" method="get" class="d-inline-block">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-info"><i class="icon-copy dw dw-search1"></i></button>
+                    </form>
+                    @endif
+                    @if ($role == 'doctor' || $role == 'admin' && $appointment->status != 'Confirmed')
                     <form action="{{ url('/appointments/'.$appointment->id.'/confirm') }}" method="post" class="d-inline-block">
                         @csrf
                         <button type="submit" class="btn btn-sm btn-success"><i class="icon-copy dw dw-checked"></i></button>
                     </form>
-                    @endif
-                    <form action="{{ url('/appointments/'.$appointment->id.'/cancel') }}" method="post" class="d-inline-block">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-danger"><i class="icon-copy dw dw-cancel"></i></button>
-                    </form>
+                    @endif                    
+                    <div class="d-inline-block">
+                        
+                        <a href="{{ url('/appointments/'.$appointment->id.'/cancel') }}" class="btn btn-sm btn-danger"><i class="icon-copy dw dw-cancel text-white"></i></a>
+                    </div>
                 </td>
             </tr>
             @endforeach

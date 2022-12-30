@@ -32,12 +32,12 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="actual" role="tabpanel">
                                 <div class="pd-20">
-                                    @include('appointments.actual')
+                                    @include('appointments.tables.actual')
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="history" role="tabpanel">
                                 <div class="pd-20">
-                                    @include('appointments.history')
+                                    @include('appointments.tables.history')
                                 </div>
                             </div>
                         </div>

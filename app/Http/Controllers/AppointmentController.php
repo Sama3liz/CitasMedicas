@@ -7,28 +7,36 @@ use App\Models\Specialty;
 use App\Models\Appointment;
 use Carbon\Carbon;
 use App\Interfaces\ScheduleServiceInterface;
+use App\Models\CancelledAppointment;
 use Illuminate\Support\Facades\Validator;
 
 class AppointmentController extends Controller
 {
     public function index(){
         $role = auth()->user()->role;
-        if ($role == 'doctor') {
+        if ($role == 'admin') {
+            // Admin
+            $appointmentsActual = Appointment::all()
+            ->whereIn('status', ['Confirmed','Reserved']);
+            $appointmentsHistory = Appointment::all()
+            ->whereIn('status', ['Done','Cancelled']);
+            return view('appointments.index', compact('appointmentsActual','appointmentsHistory','role'));
+        }elseif ($role == 'doctor') {
             // Doctor
             $appointmentsActual = Appointment::all()
                 ->whereIn('status', ['Confirmed','Reserved'])
                 ->where('doctor_id', auth()->id());
             $appointmentsHistory = Appointment::all()
-                ->whereIn('status', ['Done','Canceled'])
+                ->whereIn('status', ['Done','Cancelled'])
                 ->where('doctor_id', auth()->id());
             return view('appointments.index', compact('appointmentsActual','appointmentsHistory','role'));
-        }elseif ($role == 'paciente') {
+        }elseif ($role == 'patient') {
             // Patients
             $appointmentsActual = Appointment::all()
                 ->whereIn('status', ['Confirmed','Reserved'])
                 ->where('patient_id', auth()->id());
             $appointmentsHistory = Appointment::all()
-                ->whereIn('status', ['Done','Canceled'])
+                ->whereIn('status', ['Done','Cancelled'])
                 ->where('patient_id', auth()->id());
             return view('appointments.index', compact('appointmentsActual','appointmentsHistory','role'));
         }
@@ -99,14 +107,32 @@ class AppointmentController extends Controller
         return redirect('/appointments')->with(compact('notification'));
     }
 
-    public function cancel(Appointment $appointment){
-        $appointment->status = 'Canceled';
+    public function cancel(Appointment $appointment, Request $request){
+        $cancellation = new CancelledAppointment();
+        $cancellation->cancelled_by_id = auth()->id();
+        $appointment->cancellation()->save($cancellation);
+        $appointment->status = 'Cancelled';
         $appointment->save();
-        $notification = 'The appointment was successfully canceled.';
+        $notification = 'The appointment was successfully cancelled.';
+        return redirect('/appointments')->with(compact('notification'));
+    }
+
+    public function confirm(Appointment $appointment){
+        $appointment->status = 'Confirmed';
+        $appointment->save();
+        $notification = 'The appointment was successfully confirmed.';
         return back()->with(compact('notification'));
     }
 
+    public function formCancel(Appointment $appointment){
+        if ($appointment->status == 'Confirmed') {
+            $role = auth()->user()->role;
+            return view('appointments.cancel', compact('appointment','role'));
+        }
+        return redirect('/appointments');
+    }
+
     public function show(Appointment $appointment){
-        return view('errors.404');
+        return view('appointments.show',compact('appointment'));
     }
 }

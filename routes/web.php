@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'index']);
     Route::get('/appointments/{appointment}', [App\Http\Controllers\AppointmentController::class, 'show']);
     Route::post('/appointments/{appointment}/cancel', [App\Http\Controllers\AppointmentController::class, 'cancel']);
+    Route::get('/appointments/{appointment}/cancel', [App\Http\Controllers\AppointmentController::class, 'formCancel']);
+    Route::post('/appointments/{appointment}/confirm', [App\Http\Controllers\AppointmentController::class, 'confirm']);
     Route::get('/specialties/{specialty}/doctors', [App\Http\Controllers\Api\SpecialtyController::class, 'doctors']);
     Route::get('/schedule/hours', [App\Http\Controllers\Api\ScheduleController::class, 'hours']);
 });

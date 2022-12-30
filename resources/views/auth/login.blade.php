@@ -10,26 +10,10 @@
             <div class="col-md-6 col-lg-5">
                 <div class="login-box bg-white box-shadow border-radius-10">
                     <div class="login-title">
-                        <h2 class="text-center text-primary">{{ __('Login To ') }}{{ config('app.name', 'Laravel') }}</h2>
+                        <h2 class="text-center text-primary">{{ __('Log In') }}</h2>
                     </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <div class="select-role">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn active">
-                                    <input type="radio" name="options" id="admin">
-                                    <div class="icon"><img src="{{ asset('vendors/images/briefcase.svg') }}" class="svg" alt=""></div>
-                                    <span>{{ __("I'm")}}</span>
-                                    {{__('Manager')}}
-                                </label>
-                                <label class="btn">
-                                    <input type="radio" name="options" id="user">
-                                    <div class="icon"><img src="{{ asset('vendors/images/person.svg') }}" class="svg" alt=""></div>
-                                    <span>{{ __("I'm")}}</span>
-                                    {{__('Employee')}}
-                                </label>
-                            </div>
-                        </div>
                         <div class="input-group custom">
                             <input id="email" name="email" type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" required autofocus placeholder="{{ __('Email') }}">
                             <div class="input-group-append custom">
@@ -78,12 +62,12 @@
                                         {{ __('Login') }}
                                     </button>
                                 </div>
-                                @if (Route::has('password.request'))
+                                {{-- @if (Route::has('password.request'))
                                     <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
                                     <div class="input-group mb-0">
                                         <a class="btn btn-outline-primary btn-lg btn-block" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </div>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </form>
