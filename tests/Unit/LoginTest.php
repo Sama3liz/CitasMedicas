@@ -44,5 +44,42 @@ class LoginTest extends TestCase
         $response = $this->actingAs($user)
                         -> get('/home');
         $response->assertSuccessful();
+        $response->assertSee($user->name);
+    }
+
+    public function test_login_doctor()
+    {
+        $user = new User([
+            'name' => 'DevD',
+            'email' => 'devd@dev.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'identification' => '1721524880',
+            'address' => 'Av. Imaginaria 666',
+            'phone' => '0968000009',
+            'role' => 'doctor',
+        ]);
+        $response = $this->actingAs($user)
+                        -> get('/home');
+        $response->assertSuccessful();
+        $response->assertSee($user->name);
+    }
+
+    public function test_login_patient()
+    {
+        $user = new User([
+            'name' => 'DevP',
+            'email' => 'devp@dev.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('12345678'),
+            'identification' => '1721524880',
+            'address' => 'Av. Imaginaria 666',
+            'phone' => '0968000009',
+            'role' => 'patient',
+        ]);
+        $response = $this->actingAs($user)
+                        -> get('/home');
+        $response->assertSuccessful();
+        $response->assertSee($user->name);
     }
 }
