@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="github-link">
-            <a href="https://github.com/" target="_blank"><img src="{{ asset('vendors/images/github.svg') }}" alt=""></a>
+            <a href="https://github.com/Sama3liz/CitasMedicas" target="_blank"><img src="{{ asset('vendors/images/github.svg') }}" alt=""></a>
         </div>
     </div>
 </div>
