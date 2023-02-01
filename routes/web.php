@@ -32,7 +32,7 @@ Route::middleware(['auth','doctor'])->group(function () {
     Route::resource('patients', 'App\Http\Controllers\Admin\PatientController');
     // Histories
     Route::get('/histories', [App\Http\Controllers\Doctor\HistoryController::class, 'index'])->name('histories');
-    Route::get('/histories/{history}', [App\Http\Controllers\AppointmentController::class, 'show']);
+    Route::get('/histories/{history}', [App\Http\Controllers\Doctor\HistoryController::class, 'show']);
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/book', [App\Http\Controllers\AppointmentController::class, 'store']);
     Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'index']);
     Route::get('/appointments/{appointment}', [App\Http\Controllers\AppointmentController::class, 'show']);
+    Route::get('/appointments/{appointment}/invoice', [App\Http\Controllers\AppointmentController::class, 'invoice']);
     Route::post('/appointments/{appointment}/cancel', [App\Http\Controllers\AppointmentController::class, 'cancel']);
     Route::get('/appointments/{appointment}/cancel', [App\Http\Controllers\AppointmentController::class, 'formCancel']);
     Route::post('/appointments/{appointment}/confirm', [App\Http\Controllers\AppointmentController::class, 'confirm']);

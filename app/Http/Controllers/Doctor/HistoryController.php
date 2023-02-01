@@ -19,7 +19,7 @@ class HistoryController extends Controller
         return view('histories.index', compact('histories'));
     }
 
-    public function show(ClinicalHistory $appointment){
-        return view('histories.show',compact('appointment'));
+    public function show(ClinicalHistory $history){
+        return view('histories.show',compact('history'));
     }
 }

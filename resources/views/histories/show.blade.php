@@ -6,101 +6,42 @@
         <div class="pd-20 card-box mb-30">
             <div class="clearfix mb-20">
                 <div class="pull-left">
-                    <h4 class="text-blue h4">{{__('Appointment Details')}}</h4>
+                    <h4 class="text-blue h4">{{__('Clinical History')}}</h4>
                 </div>
                 <div class="pull-right">
                     <a href="{{ url('/appointments') }}" class="btn btn-success btn-sm" role="button"><i class="fa fa-chevron-left"></i> {{__('Back')}}</a>
                 </div>
             </div>
             <div class="card-body">
-                <div class="pd-20 card-box mb-30">
-					<form>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Date')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->scheduled_date}}">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Time')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->scheduled_time_12}}">
-							</div>
-						</div>
-                        <div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Doctor')}}</label>
-							<div class="col-sm-12 col-md-10">
-								@if ($appointment->status == 'Cancelled')
-								<input class="form-control" disabled type="text" value="{{$appointment->doctor->name}}">
-								@endif
-								@if ($appointment->status == 'Done')
-								<input class="form-control" disabled type="text" value="{{$appointment->doctor->name}}">
-								@endif
-							</div>
-						</div>
-                        <div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Specialty')}}</label>
-							<div class="col-sm-12 col-md-10">
-								@if ($appointment->status == 'Cancelled')
-								<input class="form-control" disabled type="text" value="{{$appointment->specialty->name}}">
-								@endif
-								@if ($appointment->status == 'Done')
-								<input class="form-control" disabled type="text" value="{{$appointment->specialty->name}}">
-								@endif
-							</div>
-						</div>
-                        <div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Status')}}</label>
-							<div class="col-sm-12 col-md-10">
-                                @if ($appointment->status == 'Confirmed')
-                                    <span class="badge badge-primary">{{$appointment->status}}</span>
-                                @endif
-                                @if ($appointment->status == 'Cancelled')
-                                    <span class="badge badge-danger">{{$appointment->status}}</span>
-                                @endif
-                                @if ($appointment->status == 'Reserved')
-                                    <span class="badge badge-secondary">{{$appointment->status}}</span>
-                                @endif
-								@if ($appointment->status == 'Done')
-                                    <span class="badge badge-success">{{$appointment->status}}</span>
-                                @endif
-							</div>
-						</div>
-						@if ($appointment->status == 'Done')
-                        <div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Date Done')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->updated_at}}">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Done By')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->doctor->name}}">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Details')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->done}}">
-							</div>
-						</div>	
-						@endif
-						@if ($appointment->status == 'Cancelled')
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Date Cancellation')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->cancellation->created_at}}">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Cancelled By')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->cancellation->cancelled_by->name}}">
-							</div>
-						</div>		
-						@endif					
-					</form>
+                @if (session('notification'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('notification') }}
+                    </div>
+                @endif
+                <ul>
+					<dd>
+						<strong>Date: </strong> {{$history->created_at}}
+					</dd>
+					<dd>
+						<strong>Patient: </strong> {{$history->for_patient->name}}
+					</dd>
+					<dd>
+						<strong>Doctor: </strong> {{$history->done_by}}
+					</dd>
+					<dd>
+						<strong>Specialty: </strong> {{$history->at_specialty}}
+					</dd>
+				</ul>
+				<div class="alert bg-light text-primary">
+					<ul>
+						<li>
+							<strong>Details</strong>
+							<br>
+							<textarea name="details" id="details" rows="5" class="col-md-12" disabled>
+							{{$history->details}}
+							</textarea>
+						</li>
+					</ul>
 				</div>
             </div>
         </div>

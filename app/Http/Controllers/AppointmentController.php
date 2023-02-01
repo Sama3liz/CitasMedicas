@@ -159,4 +159,8 @@ class AppointmentController extends Controller
     public function show(Appointment $appointment){
         return view('appointments.show',compact('appointment'));
     }
+
+    public function invoice(Appointment $appointment){
+        return view('appointments.invoice',compact('appointment'));
+    }
 }

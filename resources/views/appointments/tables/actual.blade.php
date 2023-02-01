@@ -52,6 +52,9 @@
                         @csrf
                         <button type="submit" class="btn btn-sm btn-info"><i class="icon-copy dw dw-search1"></i></button>
                     </form>
+                    <div class="d-inline-block">
+                        <a href="{{ url('/appointments/'.$appointment->id.'/invoice') }}" class="btn btn-sm btn-secondary"><i class="icon-copy dw dw-file text-white"></i></a>
+                    </div> 
                     @endif
                     @if ($role == 'doctor' && $appointment->status != 'Confirmed')
                     <form action="{{ url('/appointments/'.$appointment->id.'/confirm') }}" method="post" class="d-inline-block">
@@ -61,12 +64,15 @@
                     @endif
                     @if ($role == 'doctor' && $appointment->status == 'Confirmed')
                     <div class="d-inline-block">
-                        
                         <a href="{{ url('/appointments/'.$appointment->id.'/appointment') }}" class="btn btn-sm btn-info"><i class="icon-copy dw dw-checked text-white"></i></a>
                     </div>
-                    @endif                     
+                    @endif
+                    @if ($role == 'patient')
                     <div class="d-inline-block">
-                        
+                        <a href="{{ url('/appointments/'.$appointment->id.'/invoice') }}" class="btn btn-sm btn-secondary"><i class="icon-copy dw dw-file text-white"></i></a>
+                    </div> 
+                    @endif                    
+                    <div class="d-inline-block">
                         <a href="{{ url('/appointments/'.$appointment->id.'/cancel') }}" class="btn btn-sm btn-danger"><i class="icon-copy dw dw-cancel text-white"></i></a>
                     </div>
                 </td>

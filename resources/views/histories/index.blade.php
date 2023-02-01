@@ -40,10 +40,7 @@
                                 {{__($history->at_specialty)}}
                             </td>
                             <td>
-                                <form action="{{ url('/histories/'.$history->appointment_id) }}" method="get">
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-info">{{__('Show') }}</button>
-                                </form>
+                                <a href="{{ url('/histories/'.$history->id) }}" class="btn btn-sm btn-info"><i class="icon-copy dw dw-search1 text-white"></i></a>
                             </td>
                         </tr>
                         @endforeach
