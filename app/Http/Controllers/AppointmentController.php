@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use Carbon\Carbon;
 use App\Interfaces\ScheduleServiceInterface;
 use App\Models\CancelledAppointment;
+use App\Models\ClinicalHistory;
 use Illuminate\Support\Facades\Validator;
 
 class AppointmentController extends Controller
@@ -128,6 +129,29 @@ class AppointmentController extends Controller
         if ($appointment->status == 'Confirmed') {
             $role = auth()->user()->role;
             return view('appointments.cancel', compact('appointment','role'));
+        }
+        return redirect('/appointments');
+    }
+
+    public function done(Appointment $appointment, Request $request){
+        if ($request->has('details')) {
+            $done = new ClinicalHistory();
+            $done->details = $request->input('details');
+            $done->done_by = auth()->id();
+            $done->for_patient = $request->input('patient_id');
+            $done->at_specialty = $request->input('specialty_id');            
+            $appointment->done()->save($done);
+        }
+        $appointment->status = 'Done';
+        $appointment->save();
+        $notification = 'The appointment was successfully done.';
+        return redirect('/appointments')->with(compact('notification'));
+    }
+
+    public function formAppointment(Appointment $appointment){
+        if ($appointment->status == 'Confirmed') {
+            $role = auth()->user()->role;
+            return view('appointments.start', compact('appointment','role'));
         }
         return redirect('/appointments');
     }

@@ -11,7 +11,8 @@ class PatientController extends Controller
     public function index()
     {
         $patients = User::patients()->paginate(10);
-        return view('patients.index',compact('patients'));
+        $role = auth()->user()->role;
+        return view('patients.index',compact('patients','role'));
     }
 
     public function create()

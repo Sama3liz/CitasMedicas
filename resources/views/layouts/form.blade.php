@@ -19,16 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/core.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/icon-font.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/jquery-steps/jquery.steps.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'UA-119386393-1');
-	</script>
-    
+	<link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">    
 </head>
 <body class="login-page">
 	<div class="login-header box-shadow">

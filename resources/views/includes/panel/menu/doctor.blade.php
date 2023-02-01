@@ -13,3 +13,8 @@
         <span class="micon dw dw-wall-clock"></span><span class="mtext">{{__('Appointments')}}</span>
     </a>
 </li>
+<li>
+    <a href="{{ url('/histories') }}" class="dropdown-toggle no-arrow">
+        <span class="micon dw dw-library"></span><span class="mtext">{{__('Clinic Histories')}}</span>
+    </a>
+</li>

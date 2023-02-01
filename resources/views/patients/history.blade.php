@@ -10,12 +10,6 @@
                     <h4 class="text-blue h4">{{__('Patients')}}</h4>
                 </div>
                 <div class="pull-right">
-                    @if ($role == 'admin')
-                    <a href="{{ url('/patients/create') }}" class="btn btn-primary btn-sm" role="button">
-                        <i class="fa fa-plus"></i>
-                        {{__(' New')}}
-                    </a>
-                    @endif
                 </div>
             </div>
             <div class="card-body">
@@ -29,33 +23,25 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">{{__('Name')}}</th>
-                            <th scope="col">{{__('Email')}}</th>
-                            <th scope="col">{{__('Identification')}}</th>
+                            <th scope="col">{{__('Doctor')}}</th>
+                            <th scope="col">{{__('Specialty')}}</th>
                             <th scope="col">{{__('Options')}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($patients as $patient)
+                        @foreach ($histories as $history)
                         <tr>
                             <th scope="row">
-                                {{__($patient->name)}}
+                                {{__($history->done_by->name)}}
                             </th>
                             <td>
-                                {{__($patient->email)}}
+                                {{__($history->at_specialty->name)}}
                             </td>
                             <td>
-                                {{__($patient->identification)}}
-                            </td>
-                            <td>
-                            @if ($role == 'admin')
-                                <form action="{{ url('/patients/'.$patient->id) }}" method="post">
+                                <form action="{{ url('/appointments/'.$history->appointment_id) }}" method="get">
                                     @csrf
-                                    @method('DELETE')
-                                    <a href="{{ url('/patients/'.$patient->id.'/edit') }}" class="btn btn-sm btn-primary">{{__('Edit')}}</a>
-                                    <button type="submit" class="btn btn-sm btn-danger">{{__('Delete') }}</button>
+                                    <button type="submit" class="btn btn-sm btn-info">{{__('Show') }}</button>
                                 </form>
-                            @endif
                             </td>
                         </tr>
                         @endforeach

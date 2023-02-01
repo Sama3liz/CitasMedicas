@@ -53,12 +53,18 @@
                         <button type="submit" class="btn btn-sm btn-info"><i class="icon-copy dw dw-search1"></i></button>
                     </form>
                     @endif
-                    @if ($role == 'doctor' || $role == 'admin' && $appointment->status != 'Confirmed')
+                    @if ($role == 'doctor' && $appointment->status != 'Confirmed')
                     <form action="{{ url('/appointments/'.$appointment->id.'/confirm') }}" method="post" class="d-inline-block">
                         @csrf
                         <button type="submit" class="btn btn-sm btn-success"><i class="icon-copy dw dw-checked"></i></button>
                     </form>
-                    @endif                    
+                    @endif
+                    @if ($role == 'doctor' && $appointment->status == 'Confirmed')
+                    <div class="d-inline-block">
+                        
+                        <a href="{{ url('/appointments/'.$appointment->id.'/appointment') }}" class="btn btn-sm btn-info"><i class="icon-copy dw dw-checked text-white"></i></a>
+                    </div>
+                    @endif                     
                     <div class="d-inline-block">
                         
                         <a href="{{ url('/appointments/'.$appointment->id.'/cancel') }}" class="btn btn-sm btn-danger"><i class="icon-copy dw dw-cancel text-white"></i></a>
