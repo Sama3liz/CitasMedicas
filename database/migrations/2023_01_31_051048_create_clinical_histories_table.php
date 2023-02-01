@@ -18,14 +18,14 @@ return new class extends Migration
             // Details
             $table->string('details')->nullable();
             // Doctor
-            $table->unsignedBigInteger('done_by');
-            $table->foreign('done_by')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('done_by_id');
+            $table->foreign('done_by_id')->references('id')->on('users')->onDelete('cascade');
             // Patient
-            $table->unsignedBigInteger('for_patient');
-            $table->foreign('for_patient')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('for_patient_id');
+            $table->foreign('for_patient_id')->references('id')->on('users')->onDelete('cascade');
             // Specialty
-            $table->unsignedBigInteger('at_specialty');
-            $table->foreign('at_specialty')->references('id')->on('specialties')->onDelete('cascade');
+            $table->unsignedBigInteger('at_specialty_id');
+            $table->foreign('at_specialty_id')->references('id')->on('specialties')->onDelete('cascade');
             // Appointment
             $table->unsignedBigInteger('appointment_id');
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');

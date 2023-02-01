@@ -26,22 +26,19 @@
 						<strong>Patient: </strong> {{$history->for_patient->name}}
 					</dd>
 					<dd>
-						<strong>Doctor: </strong> {{$history->done_by}}
+						<strong>Doctor: </strong> {{$history->done_by->name}}
 					</dd>
 					<dd>
-						<strong>Specialty: </strong> {{$history->at_specialty}}
+						<strong>Specialty: </strong> {{$history->at_specialty->name}}
 					</dd>
 				</ul>
-				<div class="alert bg-light text-primary">
-					<ul>
-						<li>
-							<strong>Details</strong>
-							<br>
-							<textarea name="details" id="details" rows="5" class="col-md-12" disabled>
-							{{$history->details}}
-							</textarea>
-						</li>
-					</ul>
+				<div class="card text-white bg-secondary card-box">
+					<div class="card-header">
+						Details
+					</div>
+					<div class="card-body">
+						<textarea name="details" id="details" rows="10" class="col-md-12 card-text text-dark" wrap="hard" readonly="yes">{{$history->details}}</textarea>
+					</div>
 				</div>
             </div>
         </div>

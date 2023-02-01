@@ -137,9 +137,9 @@ class AppointmentController extends Controller
         if ($request->has('details')) {
             $done = new ClinicalHistory();
             $done->details = $request->input('details');
-            $done->done_by = auth()->id();
-            $done->for_patient = $request->input('patient_id');
-            $done->at_specialty = $request->input('specialty_id');            
+            $done->done_by_id = auth()->id();
+            $done->for_patient_id = $request->input('patient_id');
+            $done->at_specialty_id = $request->input('specialty_id');            
             $appointment->done()->save($done);
         }
         $appointment->status = 'Done';
@@ -157,7 +157,10 @@ class AppointmentController extends Controller
     }
 
     public function show(Appointment $appointment){
-        return view('appointments.show',compact('appointment'));
+        $role = auth()->user()->role;
+        $historyId = $appointment->id;
+        $history = ClinicalHistory::where('appointment_id', '=', $historyId)->first();
+        return view('appointments.show',compact('appointment','role','history'));
     }
 
     public function invoice(Appointment $appointment){

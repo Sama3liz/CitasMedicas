@@ -34,10 +34,10 @@
                         @foreach ($histories as $history)
                         <tr>
                             <th scope="row">
-                                {{__($history->done_by)}}
+                                {{__($history->for_patient->name)}}
                             </th>
                             <td>
-                                {{__($history->at_specialty)}}
+                                {{__($history->at_specialty->name)}}
                             </td>
                             <td>
                                 <a href="{{ url('/histories/'.$history->id) }}" class="btn btn-sm btn-info"><i class="icon-copy dw dw-search1 text-white"></i></a>

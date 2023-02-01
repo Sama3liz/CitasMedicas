@@ -27,28 +27,48 @@
 								<input class="form-control" disabled type="text" value="{{$appointment->scheduled_time_12}}">
 							</div>
 						</div>
-                        <div class="form-group row">
+						@if ($role == 'doctor')
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">{{__('Patient')}}</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" disabled type="text" value="{{$appointment->patient->name}}">
+							</div>
+						</div>
+						@endif
+						@if ($role == 'admin')
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">{{__('Patient')}}</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" disabled type="text" value="{{$appointment->patient->name}}">
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">{{__('Doctor')}}</label>
 							<div class="col-sm-12 col-md-10">
-								@if ($appointment->status == 'Cancelled')
 								<input class="form-control" disabled type="text" value="{{$appointment->doctor->name}}">
-								@endif
-								@if ($appointment->status == 'Done')
-								<input class="form-control" disabled type="text" value="{{$appointment->doctor->name}}">
-								@endif
 							</div>
 						</div>
-                        <div class="form-group row">
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">{{__('Specialty')}}</label>
 							<div class="col-sm-12 col-md-10">
-								@if ($appointment->status == 'Cancelled')
 								<input class="form-control" disabled type="text" value="{{$appointment->specialty->name}}">
-								@endif
-								@if ($appointment->status == 'Done')
-								<input class="form-control" disabled type="text" value="{{$appointment->specialty->name}}">
-								@endif
 							</div>
 						</div>
+						@endif
+						@if ($role == 'patient')
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">{{__('Doctor')}}</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" disabled type="text" value="{{$appointment->doctor->name}}">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">{{__('Specialty')}}</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" disabled type="text" value="{{$appointment->specialty->name}}">
+							</div>
+						</div>
+						@endif
                         <div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">{{__('Status')}}</label>
 							<div class="col-sm-12 col-md-10">
@@ -70,21 +90,9 @@
                         <div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">{{__('Date Done')}}</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->updated_at}}">
+								<input class="form-control" disabled type="text" value="{{$appointment->scheduled_date}}">
 							</div>
 						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Done By')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->doctor->name}}">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">{{__('Details')}}</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" disabled type="text" value="{{$appointment->done}}">
-							</div>
-						</div>	
 						@endif
 						@if ($appointment->status == 'Cancelled')
 						<div class="form-group row">

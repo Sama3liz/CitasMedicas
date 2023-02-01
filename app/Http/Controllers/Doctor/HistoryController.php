@@ -14,8 +14,7 @@ class HistoryController extends Controller
     }
 
     public function index(){
-        $done_by = auth()->id();
-        $histories = ClinicalHistory::all();
+        $histories = ClinicalHistory::all()->where('done_by_id', auth()->id());
         return view('histories.index', compact('histories'));
     }
 

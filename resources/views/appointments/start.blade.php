@@ -35,13 +35,13 @@
                         </p>
                     </div>
                 </div>
-                <form action="{{ url('/appointments/'.$appointment->id.'/appointment') }}" method="post" class="d-inline-block mt-1">
+                <form action="{{ url('/appointments/'.$appointment->id.'/appointment') }}" method="post" class="d-inline-block mt-1 col-md-12">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <input type="hidden" name="patient_id" value="{{ $appointment->patient->id }}">
                         <input type="hidden" name="specialty_id" value="{{ $appointment->specialty->id }}">
                         <label for="details">{{ __('Details: ') }}</label>
-                        <textarea name="details" id="details" rows="3" class="form-control" required></textarea>
+                        <textarea name="details" id="details" rows="3" class="form-control col-md-12" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-sm btn-success">{{ __('End Appointment') }}</button>
                 </form>
