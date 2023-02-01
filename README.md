@@ -1,4 +1,5 @@
 Sistema de citas medicas desarrollada en Laravel, utilizando PHP  Version 8.1
+<p align="center"><a href="#" target="_blank"><img src="public/vendors/images/blue-logo.png" width="400" alt="Laravel Logo"></a></p>
 
 ## Instalacion
 -Instale un servidor local como XAMPP o WAMP que incluya PHP, MySQL y Apache.
