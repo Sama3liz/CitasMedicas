@@ -62,12 +62,12 @@
                                         {{ __('Login') }}
                                     </button>
                                 </div>
-                                {{-- @if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
                                     <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
                                     <div class="input-group mb-0">
                                         <a class="btn btn-outline-primary btn-lg btn-block" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </div>
-                                @endif --}}
+                                @endif
                             </div>
                         </div>
                     </form>

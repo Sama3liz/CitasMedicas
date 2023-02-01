@@ -17,13 +17,19 @@
                             <section data-step="1">
                                 <div class="form-wrap max-width-600 mx-auto">
                                     <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Full Name*</label>
+                                        <div class="col-sm-8">
+                                            <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Email Address*</label>
                                         <div class="col-sm-8">
                                             <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-4 col-form-label">Full Name*</label>
+                                        <label class="col-sm-4 col-form-label">Identification*</label>
                                         <div class="col-sm-8">
                                             <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" required>
                                         </div>
@@ -66,10 +72,10 @@
                                             </div>
                                         </li>
                                     </ul>
-                                    {{-- <div class="custom-control custom-checkbox mt-4">
+                                    <div class="custom-control custom-checkbox mt-4">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
                                         <label class="custom-control-label" for="customCheck1">I have read and agreed to the terms of services and privacy policy</label>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </section>
                         </form>
