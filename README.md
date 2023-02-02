@@ -18,3 +18,4 @@ Sistema de citas medicas desarrollada en Laravel, utilizando PHP  Version 8.1
 
 
 ## El porque utilizamos Laravel
+- Utilizamos Laravel en la cual es un framework PHP de código abierto para desarrollo de aplicaciones web. Es uno de los más populares y utilizados en la actualidad, Lavarel nos ayuda desarrollar una aplicación mediante su sistema de paquetes dado que el framework es del tipo MVC (Modelo-Vista-Controlador) nos permite relajarnos en ciertos aspectos del desarrolló, como instancias clases y métodos para usarlos en muchas partes de nuestro código sin necesidad de escribirlo y repetirlo permitiendo su limpia reutilización. Desde la línea de comandos existe el famoso Artisan que es el nombre de su interfaz de comandos que ejecuta muchas de las funcionalidades como son crear controladores, modelos, interfaces, migraciones y demás, así como poder ejecutar la aplicación o pararla.
